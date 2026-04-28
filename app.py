@@ -19925,18 +19925,9 @@ class AppHandler(BaseHTTPRequestHandler):
 
     def _enforce_lan(self) -> bool:
         # Returns True if request allowed, otherwise sends 403 and returns False
-        ip = self._client_ip()
-        if _is_ip_allowed(ip):
-            return True
-        try:
-            self.send_response(403)
-            self.send_header("Content-Type", "text/html; charset=utf-8")
-            self.send_header("Cache-Control", "no-store")
-            self.end_headers()
-            self.wfile.write(f"<h3>403 Forbidden</h3><p>Access denied from IP: {html_escape(ip)}</p>".encode("utf-8","replace"))
-        except Exception:
-            pass
-        return False
+# ===== Railway / Public Access Mode =====
+# Allow all incoming requests (authentication handled inside the system)
+return True
 
 
     def _is_https(self) -> bool:
