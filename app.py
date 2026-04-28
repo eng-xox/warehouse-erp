@@ -19924,10 +19924,8 @@ class AppHandler(BaseHTTPRequestHandler):
             return ""
 
     def _enforce_lan(self) -> bool:
-        # Returns True if request allowed, otherwise sends 403 and returns False
-# ===== Railway / Public Access Mode =====
-# Allow all incoming requests (authentication handled inside the system)
-return True
+        """Railway/Public mode: allow access and rely on application login/RBAC."""
+        return True
 
 
     def _is_https(self) -> bool:
